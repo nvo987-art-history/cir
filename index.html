@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ratio interprétatif civilisationnel — Un modèle structurel de la relation entre la complexité des systèmes autonomes et la capacité interprétative humaine.">
+  <meta name="author" content="Nicholas Van-Orton">
+  <meta name="theme-color" content="#171918">
+
+  <title>Ratio interprétatif civilisationnel — Nicholas Van-Orton</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #171918;
+      --ink-soft: #2c302e;
+      --slate: #4e5754;
+      --muted: #747b77;
+      --paper: #f5f1e8;
+      --paper-light: #fbf9f4;
+      --paper-dark: #e8e1d4;
+      --line: rgba(23, 25, 24, .12);
+      --accent: #a68755;
+      --accent-dark: #765d38;
+      --white: #fffdf8;
+      --shadow: 0 30px 80px rgba(22, 25, 23, .10);
+      --radius: 24px;
+      --content: 920px;
+      --wide: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 90% 0%, rgba(166, 135, 85, .09), transparent 28rem),
+        var(--paper);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.82;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .reading-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 3px;
+      z-index: 100;
+      background: linear-gradient(90deg, var(--accent), #c9b184);
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: progress linear;
+      animation-timeline: scroll(root);
+    }
+
+    @keyframes progress {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .site-header {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(23, 25, 24, .98), rgba(38, 44, 42, .96)),
+        var(--ink);
+      color: var(--white);
+      isolation: isolate;
+    }
+
+    .site-header::before {
+      content: "";
+      position: absolute;
+      width: 620px;
+      height: 620px;
+      border: 1px solid rgba(255, 253, 248, .09);
+      border-radius: 50%;
+      right: -260px;
+      top: -230px;
+      z-index: -1;
+    }
+
+    .site-header::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(166, 135, 85, .20);
+      border-radius: 50%;
+      left: -260px;
+      bottom: -250px;
+      z-index: -1;
+    }
+
+    .header-nav {
+      width: min(var(--wide), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 30px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .brand-mark {
+      width: 11px;
+      height: 11px;
+      border: 1px solid var(--accent);
+      transform: rotate(45deg);
+    }
+
+    .edition {
+      color: rgba(255, 253, 248, .55);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      width: min(var(--wide), calc(100% - 48px));
+      margin: auto;
+      padding: 100px 0 120px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      color: #c7aa78;
+      font-size: 11px;
+      line-height: 1;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -.025em;
+    }
+
+    .hero h1 {
+      max-width: 980px;
+      margin: 0;
+      font-size: clamp(3.3rem, 8vw, 7.4rem);
+      line-height: .98;
+      text-wrap: balance;
+    }
+
+    .hero-subtitle {
+      max-width: 760px;
+      margin: 36px 0 0;
+      color: rgba(255, 253, 248, .68);
+      font-size: clamp(1rem, 1.7vw, 1.2rem);
+      line-height: 1.75;
+    }
+
+    .author-line {
+      margin-top: 52px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      color: rgba(255, 253, 248, .9);
+      font-size: 13px;
+      letter-spacing: .06em;
+    }
+
+    .author-line .separator {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .scroll-cue {
+      width: min(var(--wide), calc(100% - 48px));
+      margin: 0 auto;
+      padding-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255, 253, 248, .45);
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-cue span {
+      width: 1px;
+      height: 42px;
+      background: linear-gradient(var(--accent), transparent);
+    }
+
+    main {
+      position: relative;
+    }
+
+    .intro-band {
+      background: var(--paper-light);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .intro-grid {
+      width: min(var(--wide), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 80px 0;
+      display: grid;
+      grid-template-columns: .75fr 1.6fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .section-label {
+      color: var(--accent-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .abstract {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .article {
+      width: min(var(--content), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 105px 0 40px;
+    }
+
+    .chapter {
+      padding: 60px 0 80px;
+      scroll-margin-top: 40px;
+    }
+
+    .chapter + .chapter {
+      border-top: 1px solid var(--line);
+    }
+
+    .chapter-number {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .chapter > h2 {
+      margin: 0 0 50px;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.08;
+    }
+
+    .chapter h3 {
+      margin: 64px 0 20px;
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
+      line-height: 1.25;
+    }
+
+    p {
+      margin: 0 0 28px;
+      color: #303431;
+    }
+
+    strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 35px;
+    }
+
+    .keyword {
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      color: var(--slate);
+      font-size: 11px;
+      line-height: 1.2;
+      letter-spacing: .04em;
+      background: rgba(255, 253, 248, .55);
+    }
+
+    .statement {
+      position: relative;
+      margin: 48px 0;
+      padding: 42px 46px 42px 52px;
+      border-top: 1px solid var(--accent);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255, 253, 248, .72), rgba(232, 225, 212, .42));
+      box-shadow: 0 18px 50px rgba(23, 25, 24, .045);
+    }
+
+    .statement::before {
+      content: "“";
+      position: absolute;
+      left: 18px;
+      top: 22px;
+      color: var(--accent);
+      font-family: Georgia, serif;
+      font-size: 54px;
+      line-height: 1;
+    }
+
+    .statement p {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .equation {
+      margin: 34px 0 42px;
+      padding: 34px 24px;
+      text-align: center;
+      border-radius: 16px;
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      letter-spacing: .01em;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 42px 0;
+    }
+
+    .concept-card {
+      padding: 30px;
+      min-height: 180px;
+      background: rgba(255, 253, 248, .68);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .concept-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(166, 135, 85, .4);
+      box-shadow: 0 18px 45px rgba(23, 25, 24, .08);
+    }
+
+    .concept-card span {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--accent-dark);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .concept-card strong {
+      display: block;
+      margin-bottom: 9px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.25rem;
+    }
+
+    .concept-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+
+    .scale-list {
+      display: grid;
+      gap: 14px;
+      margin: 36px 0;
+    }
+
+    .scale-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 22px 24px;
+      background: var(--paper-light);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .scale-item strong {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.1rem;
+    }
+
+    .scale-item code {
+      color: var(--accent-dark);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .85rem;
+    }
+
+    .research-status {
+      margin: 50px 0;
+      padding: 34px;
+      border-left: 2px solid var(--accent);
+      background: rgba(232, 225, 212, .45);
+    }
+
+    .research-status strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .references {
+      padding-top: 30px;
+    }
+
+    .reference-card {
+      margin-top: 28px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: var(--paper-light);
+      border-radius: 18px;
+    }
+
+    .reference-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .site-footer {
+      margin-top: 60px;
+      background: var(--ink);
+      color: var(--white);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-inner {
+      width: min(var(--wide), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 76px 0 34px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 80px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .footer-title {
+      margin: 0 0 20px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      font-weight: 500;
+    }
+
+    .footer-description {
+      max-width: 570px;
+      margin: 0;
+      color: rgba(255,255,255,.56);
+      font-size: .9rem;
+      line-height: 1.75;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 13px;
+      align-content: start;
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.75);
+      font-size: .85rem;
+      transition: color .25s ease, padding .25s ease;
+    }
+
+    .footer-link:hover,
+    .footer-link:focus-visible {
+      color: #d4b77f;
+      padding-left: 7px;
+    }
+
+    .footer-link .arrow {
+      color: var(--accent);
+      font-size: 15px;
+    }
+
+    .footer-link code {
+      color: inherit;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .78rem;
+      overflow-wrap: anywhere;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-top: 26px;
+      color: rgba(255,255,255,.36);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,.48);
+      transition: color .2s ease;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 800px) {
+      body {
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .header-nav,
+      .hero,
+      .scroll-cue,
+      .intro-grid,
+      .article,
+      .footer-inner {
+        width: min(100% - 36px, var(--wide));
+      }
+
+      .site-header {
+        min-height: 88vh;
+      }
+
+      .hero {
+        padding: 75px 0 90px;
+      }
+
+      .hero h1 {
+        font-size: clamp(3rem, 13vw, 5rem);
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 58px 0;
+      }
+
+      .article {
+        padding-top: 60px;
+      }
+
+      .chapter {
+        padding: 45px 0 60px;
+      }
+
+      .chapter > h2 {
+        margin-bottom: 36px;
+      }
+
+      .concept-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-item {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .statement {
+        padding: 34px 28px 34px 42px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .header-nav {
+        padding-top: 22px;
+      }
+
+      .edition {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 14vw, 4rem);
+      }
+
+      .author-line {
+        gap: 10px;
+      }
+
+      .author-line .separator {
+        display: none;
+      }
+
+      .article,
+      .header-nav,
+      .hero,
+      .scroll-cue,
+      .intro-grid,
+      .footer-inner {
+        width: min(100% - 28px, var(--wide));
+      }
+
+      .statement {
+        margin-left: -4px;
+        margin-right: -4px;
+      }
+
+      .concept-card,
+      .reference-card {
+        padding: 23px;
+      }
+
+      .footer-inner {
+        padding-top: 58px;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="reading-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="header-nav" aria-label="Navigation principale">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>NVO987 Research</span>
+      </a>
+      <span class="edition">Version 1 · 2026</span>
+    </nav>
+
+    <div class="hero" id="top">
+      <div class="eyebrow">Authorial Research Framework</div>
+
+      <h1>Ratio interprétatif civilisationnel</h1>
+
+      <p class="hero-subtitle">
+        Un modèle structurel de la relation entre la complexité des systèmes autonomes
+        et la capacité interprétative humaine.
+      </p>
+
+      <div class="author-line">
+        <span>Nicholas Van-Orton</span>
+        <span class="separator" aria-hidden="true"></span>
+        <span>2026</span>
+        <span class="separator" aria-hidden="true"></span>
+        <span>Version 1</span>
+      </div>
+    </div>
+
+    <div class="scroll-cue">
+      <span aria-hidden="true"></span>
+      <span>Lire le cadre</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro-band" aria-labelledby="resume-title">
+      <div class="intro-grid">
+        <div>
+          <div class="section-label" id="resume-title">Résumé</div>
+          <div class="keywords" aria-label="Mots-clés">
+            <span class="keyword">systèmes autonomes</span>
+            <span class="keyword">capacité interprétative</span>
+            <span class="keyword">complexité technologique</span>
+            <span class="keyword">transparence structurelle</span>
+            <span class="keyword">architecture décisionnelle</span>
+          </div>
+        </div>
+
+        <p class="abstract">
+          Cet article développe le <strong>Ratio interprétatif civilisationnel</strong>
+          comme un cadre non normatif, indépendant de l’échelle et indépendant du temps,
+          destiné à examiner la relation structurelle entre la complexité des systèmes
+          autonomes et la capacité interprétative humaine. Le cadre part d'une asymétrie
+          simple : la complexité technologique et la capacité requise pour comprendre,
+          interpréter, superviser et rester responsable au sein de systèmes médiatisés
+          par la technologie n'évoluent pas nécessairement au même rythme. La portée
+          analytique de cette divergence ne réside pas dans une évaluation de la technologie,
+          mais dans les changements structurels susceptibles d'accompagner un déséquilibre persistant.
+        </p>
+      </div>
+    </section>
+
+    <article class="article">
+
+      <section class="chapter" id="resume">
+        <div class="chapter-number">Résumé</div>
+
+        <p>
+          Dans le modèle, la complexité désigne plus qu'un simple détail technique.
+          Elle englobe la stratification architecturale, de multiples dimensions décisionnelles,
+          des schémas comportementaux émergents, l'intégration dans les réseaux et une
+          transparence opérationnelle décroissante. La capacité interprétative désigne la
+          capacité à construire des modèles mentaux qui saisissent les structures opérationnelles
+          essentielles, à reconnaître les limites du système, à maintenir une orientation
+          prédictive bornée et à préserver les mécanismes de responsabilité et de contrôle.
+          Le ratio est donc relationnel plutôt qu'absolu. Un déplacement persistant entre les
+          deux facteurs constitue un changement d'état structurel.
+        </p>
+
+        <p>
+          Le cadre peut être appliqué aux niveaux individuel, institutionnel et civilisationnel
+          sans être lié à une plateforme, un algorithme ou un paradigme technologique particulier.
+          Sa formulation actuelle est intentionnellement fondamentale. Elle ne revendique ni
+          autorité prédictive, ni validation empirique, ni seuil numérique universel. Elle établit
+          plutôt un vocabulaire analytique permettant d'examiner la prise de décision déléguée,
+          les couches interprétatives intermédiaires, la transparence et la diffusion de la
+          responsabilité comme conséquences possibles d'une asymétrie interprétative durable.
+        </p>
+      </section>
+
+      <section class="chapter" id="introduction">
+        <div class="chapter-number">01 · Fondements</div>
+        <h2>Introduction et fondements théoriques</h2>
+
+        <p>
+          L'environnement technologique du XXIe siècle est de plus en plus façonné par des
+          systèmes autonomes et semi-autonomes dont le fonctionnement interne ne peut être
+          représenté de manière adéquate au moyen de descriptions linéaires simples. Les
+          algorithmes d'aide à la décision, les modèles prédictifs, les architectures
+          d'apprentissage automatique et les infrastructures fonctionnant de manière autonome
+          introduisent de multiples couches d'interaction entre les entrées des systèmes,
+          les processus internes, les sorties et les décisions humaines. La transformation
+          qui en résulte ne peut être décrite de manière adéquate comme une augmentation
+          quantitative de la sophistication technique. Il s'agit d'un changement dans la
+          densité structurelle.
+        </p>
+
+        <p>
+          Le document fondateur du Ratio interprétatif civilisationnel caractérise cette
+          évolution comme une <strong>densification structurelle</strong> : les systèmes
+          acquièrent davantage de couches, davantage d'interactions et davantage de comportements
+          émergents. Cette formulation déplace l'attention analytique de la quantité d'informations
+          techniques contenues dans un système vers la structure à travers laquelle ces informations
+          sont organisées et opérationnalisées. La complexité devient significative lorsque les
+          relations entre les composants, les dimensions décisionnelles et les schémas
+          comportementaux commencent à affecter les conditions dans lesquelles les humains
+          peuvent comprendre et superviser le système.
+        </p>
+
+        <p>
+          Un second développement intervient parallèlement à cette augmentation de la complexité
+          technologique. Les acteurs humains doivent maintenir une certaine capacité à comprendre
+          le fonctionnement des systèmes, à reconnaître leurs limites, à construire des modèles
+          mentaux opérationnels et à préserver les mécanismes de responsabilité et de contrôle.
+          Le cadre source désigne cette capacité comme la <strong>capacité interprétative humaine</strong>
+          et la distingue explicitement de la seule connaissance technique. Elle comporte des
+          dimensions cognitives, institutionnelles et éthiques.
+        </p>
+
+        <p>
+          Le problème théorique apparaît parce que ces deux processus ne sont pas supposés être
+          synchronisés. La complexité technologique peut augmenter tandis que la capacité
+          interprétative évolue à un rythme différent. La divergence n'est donc ni une anomalie
+          ni, dans le cadre, un échec moral. Il s'agit d'une possibilité structurelle qui doit
+          être rendue analytiquement visible.
+        </p>
+
+        <p>
+          Le Ratio interprétatif civilisationnel est introduit pour décrire cette relation.
+          Sa proposition centrale est que l'objet analytique pertinent n'est pas la quantité
+          absolue de complexité technologique ou de capacité interprétative considérée séparément,
+          mais leur <strong>relation proportionnelle</strong>. Lorsque la complexité augmente
+          plus rapidement que la capacité interprétative, le ratio évolue. Le cadre désigne
+          cette évolution comme un <strong>changement d'état structurel</strong>, en la séparant
+          explicitement d'un jugement moral sur la technologie.
+        </p>
+
+        <p>
+          Cette distinction détermine le caractère du cadre. Il n'est ni antitechnologique ni
+          promotionnel à l'égard de la technologie. Il ne demande pas si les systèmes autonomes
+          sont bénéfiques ou nuisibles. Il ne prétend pas non plus que la complexité devrait être
+          éliminée. Sa question plus étroite est de savoir si les structures interprétatives
+          entourant les systèmes technologiques restent proportionnelles à la complexité
+          structurelle croissante de ces systèmes.
+        </p>
+
+        <p>
+          Le présent article développe cette question sous la forme d'un modèle conceptuel.
+          Il ne cherche pas à fournir un instrument de mesure empirique ou une formulation
+          mathématique achevée. Le document sous-jacent identifie sa première version comme
+          un préprint théorique déclaratif et fondamental destiné à établir le cadre avant
+          une formalisation ultérieure, un affinage conceptuel et une investigation interdisciplinaire.
+        </p>
+
+        <p>
+          L'objectif du modèle est par conséquent diagnostique plutôt que prédictif. Il fournit
+          un moyen de décrire une relation structurelle qui pourrait autrement être répartie
+          entre des discussions distinctes portant sur la technologie, la cognition, les
+          institutions, la transparence et la responsabilité.
+        </p>
+      </section>
+
+      <section class="chapter" id="modele">
+        <div class="chapter-number">02 · Modèle relationnel</div>
+        <h2>Complexité versus capacité interprétative</h2>
+
+        <p>
+          Le Ratio interprétatif civilisationnel repose sur deux variables analytiques :
+          la complexité structurelle des systèmes autonomes et la capacité interprétative
+          disponible pour les acteurs humains et les institutions. Leur importance émerge
+          à travers leur relation.
+        </p>
+
+        <h3>2.1 Complexité structurelle</h3>
+
+        <p>
+          La complexité, dans ce cadre, ne peut être réduite au détail technique, à l'échelle
+          computationnelle ou au nombre de composants individuels. La source la définit à
+          travers plusieurs caractéristiques qui se renforcent mutuellement :
+          <strong>la stratification architecturale, le nombre de dimensions décisionnelles,
+          les schémas comportementaux émergents, l'intégration dans les réseaux et la réduction
+          de la transparence opérationnelle</strong>.
+        </p>
+
+        <div class="concept-grid">
+          <div class="concept-card">
+            <span>Dimension 01</span>
+            <strong>Stratification architecturale</strong>
+            <p>Accumulation de couches à travers lesquelles un système fonctionne.</p>
+          </div>
+
+          <div class="concept-card">
+            <span>Dimension 02</span>
+            <strong>Dimensions décisionnelles</strong>
+            <p>Nombre et variété des facteurs intégrés aux processus opérationnels.</p>
+          </div>
+
+          <div class="concept-card">
+            <span>Dimension 03</span>
+            <strong>Comportement émergent</strong>
+            <p>Résultats au niveau du système qui ne sont pas adéquatement déduits des composants isolés.</p>
+          </div>
+
+          <div class="concept-card">
+            <span>Dimension 04</span>
+            <strong>Intégration dans les réseaux</strong>
+            <p>Relations s'étendant au-delà de la frontière technique immédiate du système.</p>
+          </div>
+
+          <div class="concept-card">
+            <span>Dimension 05</span>
+            <strong>Transparence opérationnelle</strong>
+            <p>Difficulté croissante à voir comment le système passe des entrées aux sorties et décisions.</p>
+          </div>
+        </div>
+
+        <p>
+          La stratification architecturale désigne l'accumulation de couches à travers lesquelles
+          un système fonctionne. Les dimensions décisionnelles concernent le nombre et la variété
+          des facteurs intégrés à ses processus opérationnels. Le comportement émergent indique
+          que les résultats au niveau du système peuvent ne pas être adéquatement déduits des
+          propriétés isolées des composants individuels. L'intégration dans les réseaux place
+          le système dans des relations s'étendant au-delà de sa frontière technique immédiate.
+          La réduction de la transparence opérationnelle concerne la difficulté croissante à voir
+          comment le système passe des conditions et des entrées aux sorties et aux décisions.
+        </p>
+
+        <p>
+          Ces caractéristiques ne doivent pas être traitées comme des composantes indépendantes
+          d'une liste de contrôle. Leur pertinence analytique découle de leur interaction. Des
+          couches supplémentaires peuvent accroître le nombre de relations devant être interprétées.
+          Une plus grande intégration dans les réseaux peut étendre les frontières du système
+          devant être prises en compte. Le comportement émergent peut rendre moins directe la
+          relation entre les opérations locales et les résultats au niveau du système. À mesure
+          que ces conditions s'accumulent, la transparence opérationnelle peut diminuer.
+        </p>
+
+        <p>
+          Le cadre établit donc une distinction entre <strong>déterminisme formel</strong> et
+          <strong>interprétabilité pratique</strong>. Un système peut être formellement déterministe
+          et néanmoins rester opaque pour ses utilisateurs. Le déterminisme ne fournit pas à lui
+          seul un modèle mental humain adéquat. La question pertinente est de savoir si la structure
+          opérationnelle peut encore être représentée de manière suffisante pour permettre une
+          interprétation significative.
+        </p>
+
+        <p>
+          La complexité possède par conséquent une dimension interprétative. Elle devient
+          analytiquement significative non simplement parce qu'un système contient de nombreux
+          éléments, mais parce que la structure de ces éléments affecte la capacité des acteurs
+          humains à comprendre ce que fait le système et dans quelles limites son comportement
+          peut être anticipé.
+        </p>
+
+        <h3>2.2 Capacité interprétative</h3>
+
+        <p>
+          La capacité interprétative constitue le second aspect de la relation. Le cadre ne la
+          définit pas comme la capacité à reproduire chaque opération technique d'un système.
+          Un tel critère imposerait une norme inutilement absolue. Au contraire, la capacité
+          interprétative exige un modèle mental capable de saisir la structure essentielle du fonctionnement.
+        </p>
+
+        <p>
+          Les capacités pertinentes comprennent la reconnaissance des limites du système, une
+          orientation prédictive bornée et la capacité à maintenir des cadres de responsabilité.
+          Ces capacités permettent aux acteurs humains de rester de manière significative situés
+          par rapport à un système, même lorsque le mécanisme technique complet ne peut être
+          reconstruit par un individu.
+        </p>
+
+        <p>
+          Cela rend la capacité interprétative relationnelle par nature. La capacité interprétative
+          d'une personne ou d'une institution ne peut être évaluée indépendamment du système
+          interprété. Un modèle mental peut être suffisant pour un niveau de complexité et
+          inadéquat pour un autre. L'interprétabilité n'est donc pas une propriété intrinsèque
+          du seul sujet humain. Elle émerge de la relation entre la structure à comprendre et
+          la capacité disponible pour la comprendre.
+        </p>
+
+        <p>
+          Le cadre résiste également à la réduction de l'interprétation à l'expertise technique.
+          Parce que la capacité interprétative comprend des dimensions institutionnelles et
+          éthiques, un individu techniquement compétent ne résout pas nécessairement un déficit
+          interprétatif institutionnel. Une organisation peut disposer d'une compétence technique
+          considérable tout en répartissant les connaissances, l'autorité décisionnelle et la
+          responsabilité au sein de structures qui rendent difficile la reconstruction du système
+          dans son ensemble.
+        </p>
+
+        <h3>2.3 Proportionnalité plutôt que mesure absolue</h3>
+
+        <p>
+          Le concept de ratio établit la principale discipline analytique du cadre. Il déplace
+          l'attention de la question « À quel point ce système est-il complexe ? » vers une
+          question relationnelle : <strong>Comment la complexité du système se situe-t-elle par
+          rapport à la capacité interprétative qui l'entoure ?</strong>
+        </p>
+
+        <p>
+          La distinction est importante. Un système à haute complexité ne représente pas
+          automatiquement un déséquilibre structurel. Si la capacité interprétative se développe
+          proportionnellement, la complexité peut rester dans une relation intelligible avec les
+          acteurs et les institutions qui exploitent le système.
+        </p>
+
+        <p>
+          Inversement, un système n'a pas besoin d'être maximalement complexe pour créer une
+          asymétrie interprétative. Un système comparativement moins complexe peut dépasser la
+          capacité disponible d'un utilisateur ou d'une institution donnée. Le ratio n'établit
+          donc pas un seuil universel de complexité. Il identifie une relation en évolution.
+        </p>
+
+        <div class="statement">
+          <p>
+            Le Ratio interprétatif civilisationnel concerne la relation proportionnelle entre
+            la complexité structurelle des systèmes autonomes et la capacité interprétative
+            disponible au sein des structures humaines qui les entourent.
+          </p>
+        </div>
+
+        <p>
+          Cette formulation ne doit pas être confondue avec une équation mathématique achevée.
+          Le document source identifie explicitement le cadre actuel comme précédant la
+          modélisation mathématique formelle. Le ratio est, à ce stade, une relation conceptuelle
+          plutôt qu'un indice numérique validé.
+        </p>
+
+        <h3>2.4 Changement d'état structurel</h3>
+
+        <p>
+          L'implication analytique la plus importante du ratio apparaît lorsque la relation
+          demeure durablement déplacée.
+        </p>
+
+        <p>
+          Si la complexité technologique croît plus rapidement que la capacité interprétative,
+          la condition qui en résulte est décrite par le cadre comme un changement d'état structurel.
+          Le terme est délibérément neutre. Il ne désigne ni un échec, ni un danger, ni un déclin
+          technologique. Il identifie un changement dans la structure de la relation entre
+          l'humain et le système.
+        </p>
+
+        <p>
+          Cela permet au modèle de distinguer une difficulté interprétative temporaire d'une
+          asymétrie structurelle durable. Un manque momentané de compréhension ne constitue pas
+          nécessairement un changement d'état du système. La préoccupation théorique apparaît
+          lorsque la divergence persiste et s'intègre dans la manière dont les décisions sont
+          prises, les systèmes utilisés et la responsabilité organisée.
+        </p>
+
+        <p>
+          Le ratio fonctionne ainsi comme une lentille à travers laquelle les changements dans
+          la participation au système peuvent être examinés.
+        </p>
+      </section>
+
+      <section class="chapter" id="consequences">
+        <div class="chapter-number">03 · Conséquences structurelles</div>
+        <h2>Conséquences structurelles d'un déséquilibre du ratio</h2>
+
+        <p>
+          Un déséquilibre persistant du ratio ne produit pas nécessairement un effondrement
+          technologique. Le cadre source formule une affirmation plus spécifique :
+          <strong>la forme de participation humaine au fonctionnement du système change</strong>.
+        </p>
+
+        <p>
+          La première conséquence est une délégation accrue. La deuxième est la croissance de
+          couches interprétatives intermédiaires. La troisième concerne la responsabilité, qui
+          peut devenir de plus en plus diffuse à mesure que les chaînes de décision passent par
+          de multiples composants partiellement autonomes. La transparence évolue dans ces
+          trois dimensions.
+        </p>
+
+        <h3>3.1 Prise de décision déléguée</h3>
+
+        <p>
+          Lorsque l'interprétation directe devient difficile, la prise de décision peut être de
+          plus en plus déléguée. L'utilisateur ne cesse pas nécessairement d'exercer son agentivité.
+          Au contraire, celle-ci devient médiatisée par une structure qui détermine quels aspects
+          du système peuvent être directement compris et lesquels doivent être acceptés à travers
+          des sorties, des recommandations, des procédures ou une interprétation spécialisée.
+        </p>
+
+        <p>
+          Le cadre source identifie l'augmentation de la délégation comme l'une des conséquences
+          structurelles associées à un déséquilibre persistant du ratio. La délégation n'est pas
+          problématique en soi. Il s'agit d'une réponse structurelle normale à la complexité.
+          Sa signification dans le modèle réside dans sa relation avec l'interprétabilité.
+        </p>
+
+        <p>
+          À mesure que la délégation s'étend, la distance entre un décideur humain et les opérations
+          sous-jacentes du système peut augmenter. La décision pratique peut rester intelligible
+          même lorsque le processus technique générant les informations pertinentes ne l'est pas.
+          Cela crée une distinction entre <strong>utilisabilité décisionnelle</strong> et
+          <strong>interprétabilité du système</strong>.
+        </p>
+
+        <p>
+          Un système peut donc favoriser une prise de décision efficace tout en réduisant la
+          mesure dans laquelle le décideur peut reconstruire indépendamment les conditions dans
+          lesquelles la recommandation ou la sortie a été produite.
+        </p>
+
+        <h3>3.2 Couches interprétatives intermédiaires</h3>
+
+        <p>
+          La distance croissante entre la complexité et l'interprétation humaine directe crée
+          une demande de structures intermédiaires. La source identifie les <strong>experts,
+          les interfaces et les outils d'abstraction</strong> comme exemples.
+        </p>
+
+        <p>
+          Ces intermédiaires remplissent une fonction de traduction. Ils transforment des
+          structures opérationnelles complexes en formes sur lesquelles peuvent agir des
+          utilisateurs qui n'ont pas accès directement à l'ensemble du système.
+        </p>
+
+        <p>
+          Une interface peut compresser un vaste espace décisionnel en un ensemble limité de
+          choix visibles. Un expert peut traduire des processus techniques en descriptions
+          conceptuelles. Un outil d'abstraction peut dissimuler les détails opérationnels tout
+          en préservant les informations nécessaires à une action donnée.
+        </p>
+
+        <p>
+          Une telle médiation est structurellement ambivalente. Elle peut accroître l'accessibilité
+          pratique sans accroître la compréhension directe. L'utilisateur devient capable
+          d'interagir avec le système précisément parce qu'un intermédiaire retire une partie
+          de la complexité de son champ de vision.
+        </p>
+
+        <p>
+          Cela produit une distinction cruciale pour le modèle :
+          <strong>une exposition réduite à la complexité n'est pas équivalente à une capacité
+          interprétative accrue</strong>. Un système peut devenir plus facile à utiliser alors
+          que la relation sous-jacente entre l'acteur humain et le système reste de plus en plus indirecte.
+        </p>
+
+        <h3>3.3 Transparence</h3>
+
+        <p>
+          La transparence est affectée parce que la médiation interprétative modifie ce que
+          l'utilisateur peut observer directement.
+        </p>
+
+        <p>
+          Le cadre associe un déséquilibre persistant du ratio à une diminution de la transparence
+          directe. Cela ne signifie pas que toutes les informations sur le système disparaissent.
+          La transparence est plutôt comprise ici comme la capacité à maintenir une relation
+          intelligible entre le fonctionnement du système et l'interprétation humaine.
+        </p>
+
+        <p>
+          Un système techniquement sophistiqué peut exposer de grandes quantités d'informations
+          sans devenir pour autant plus transparent. Inversement, une couche d'abstraction peut
+          exposer moins d'informations tout en rendant la structure pratiquement pertinente du
+          système plus facile à comprendre.
+        </p>
+
+        <p>
+          Le cadre concerne donc la <strong>transparence structurelle</strong>, et non le volume
+          d'information. Ce qui importe est de savoir si les représentations disponibles préservent
+          une relation adéquate entre le fonctionnement du système et le modèle mental humain
+          nécessaire pour y agir de manière responsable.
+        </p>
+
+        <h3>3.4 Diffusion de la responsabilité</h3>
+
+        <p>
+          La responsabilité constitue le troisième domaine structurel affecté par le déséquilibre
+          du ratio.
+        </p>
+
+        <p>
+          À mesure que les chaînes de décision passent par de multiples composants partiellement
+          autonomes, la responsabilité peut devenir plus diffuse. Le problème n'est pas
+          nécessairement que la responsabilité disparaisse. La chaîne à travers laquelle la
+          responsabilité peut être interprétée devient plutôt plus longue et plus distribuée.
+        </p>
+
+        <p>
+          Une décision peut impliquer l'architecture du système, le traitement automatisé,
+          la supervision humaine, la procédure institutionnelle, l'interprétation experte et
+          l'action humaine finale. Lorsque ces éléments sont reliés par des relations de plus
+          en plus indirectes, il devient plus difficile d'identifier où se situe l'auteur
+          véritablement significatif d'une décision.
+        </p>
+
+        <p>
+          Le cadre ne propose pas de principe normatif d'attribution de la responsabilité.
+          Il identifie la diffusion comme une conséquence structurelle pouvant accompagner
+          une médiation accrue entre la complexité et l'interprétation humaine.
+        </p>
+
+        <p>
+          Cette distinction est essentielle au caractère non normatif du modèle. La théorie ne
+          détermine pas que la responsabilité distribuée soit intrinsèquement indésirable.
+          Elle identifie une transformation de l'architecture de la responsabilité qui peut
+          être analysée parallèlement aux changements d'interprétabilité et de transparence.
+        </p>
+
+        <h3>3.5 Infrastructure interprétative comme réponse possible</h3>
+
+        <p>
+          Le cadre n'implique pas que la complexité technologique doive être réduite. Sa direction
+          proposée est plutôt une augmentation de la capacité interprétative proportionnelle à
+          la croissance de la complexité.
+        </p>
+
+        <p>
+          La source donne comme exemples de telles initiatives architecturales des cadres de
+          connaissances et d'identité structurés, lisibles par machine, versionnés et
+          cryptographiquement vérifiables, qui peuvent réduire l'écart entre complexité et interprétation.
+        </p>
+
+        <p>
+          Ces exemples sont illustratifs plutôt que probants. Ils ne valident pas le ratio.
+          Leur fonction dans le cadre est de démontrer le type d'intervention que le modèle
+          rend conceptuellement visible : l'infrastructure interprétative peut être traitée
+          comme une composante structurelle des systèmes technologiques plutôt que comme une
+          réflexion externe ultérieure.
+        </p>
+
+        <p>
+          L'objectif pertinent n'est donc pas la simplification pour elle-même. Il est le
+          maintien de la proportionnalité interprétative.
+        </p>
+      </section>
+
+      <section class="chapter" id="echelle">
+        <div class="chapter-number">04 · Échelle & temps</div>
+        <h2>Indépendance d'échelle et temporelle dans l'analyse des systèmes</h2>
+
+        <p>
+          Le Ratio interprétatif civilisationnel est conçu pour fonctionner à différents niveaux
+          d'analyse sans modifier sa structure relationnelle fondamentale. La source identifie
+          trois échelles principales : individuelle, institutionnelle et civilisationnelle.
+        </p>
+
+        <h3>4.1 Échelle individuelle</h3>
+
+        <p>
+          Au niveau individuel, l'objet de l'analyse est la relation entre un utilisateur et
+          un système algorithmique ou autonome.
+        </p>
+
+        <p>
+          La question pertinente est de savoir si la capacité interprétative de l'utilisateur
+          reste proportionnelle à la complexité rencontrée au cours de l'interaction. L'utilisateur
+          n'a pas besoin de comprendre chaque mécanisme technique. Ce qui importe est de savoir
+          s'il peut construire un modèle mental adéquat, reconnaître les limites significatives,
+          maintenir des attentes bornées et comprendre le fondement de la responsabilité dans
+          le cadre de l'interaction.
+        </p>
+
+        <p>
+          À cette échelle, un déséquilibre du ratio peut apparaître sous la forme d'une dépendance
+          croissante aux sorties sans compréhension correspondante des processus qui les génèrent.
+          Le modèle ne considère pas cette dépendance comme intrinsèquement problématique. Il
+          l'identifie comme une condition structurelle pouvant être examinée.
+        </p>
+
+        <h3>4.2 Échelle institutionnelle</h3>
+
+        <p>
+          Au niveau institutionnel, la capacité interprétative est distribuée au sein des
+          structures organisationnelles.
+        </p>
+
+        <p>
+          Une institution peut disposer de spécialistes techniques, de personnel opérationnel,
+          de responsables, d'interfaces, de documentation et de contrôles procéduraux. Aucun
+          acteur unique ne peut comprendre l'ensemble de l'infrastructure technologique, et
+          pourtant l'institution peut collectivement maintenir un modèle interprétatif opérationnel.
+        </p>
+
+        <p>
+          Cela modifie la question analytique. Il ne suffit plus de demander si un individu
+          comprend le système. La question devient de savoir si l'institution en tant que
+          structure peut préserver une continuité interprétative suffisante à travers la
+          distribution des connaissances et des responsabilités.
+        </p>
+
+        <p>
+          L'interprétation institutionnelle implique donc une architecture : qui comprend quelle
+          couche, qui peut remettre en question les sorties du système, qui maintient les
+          connaissances opérationnelles et comment la responsabilité circule à travers les
+          frontières organisationnelles. Ces questions découlent de la logique relationnelle
+          du cadre sans nécessiter d'hypothèses dépassant sa portée conceptuelle.
+        </p>
+
+        <h3>4.3 Échelle civilisationnelle</h3>
+
+        <p>
+          Au niveau civilisationnel, le cadre considère les sociétés qui dépendent de systèmes
+          autonomes à grande échelle.
+        </p>
+
+        <p>
+          Le terme <em>civilisationnel</em> indique l'ampleur de la relation systémique plutôt
+          qu'une affirmation empirique sur le développement historique de la civilisation.
+          L'objet analytique est la relation entre les infrastructures technologiques à grande
+          échelle et les structures interprétatives à travers lesquelles les sociétés comprennent,
+          gouvernent et restent responsables de leur fonctionnement.
+        </p>
+
+        <p>
+          À cette échelle, la capacité interprétative est nécessairement distribuée. Les
+          institutions, les communautés professionnelles, les systèmes techniques, les interfaces
+          et les structures de connaissance assurent collectivement la médiation entre la
+          complexité technologique et la prise de décision sociale.
+        </p>
+
+        <p>
+          Le ratio peut donc être utilisé pour examiner si cette structure interprétative distribuée
+          reste proportionnelle à la complexité dont dépendent de plus en plus les processus collectifs.
+        </p>
+
+        <h3>4.4 L'indépendance d'échelle comme propriété relationnelle</h3>
+
+        <p>
+          L'indépendance d'échelle ne signifie pas que les systèmes individuels, institutionnels
+          et civilisationnels sont identiques. Ils ne le sont manifestement pas. Elle signifie
+          que la même question relationnelle peut être appliquée à chaque niveau.
+        </p>
+
+        <div class="scale-list">
+          <div class="scale-item">
+            <strong>Au niveau individuel</strong>
+            <code>acteur humain ↔ système autonome</code>
+          </div>
+
+          <div class="scale-item">
+            <strong>Au niveau institutionnel</strong>
+            <code>organisation ↔ infrastructure technologique</code>
+          </div>
+
+          <div class="scale-item">
+            <strong>Au niveau civilisationnel</strong>
+            <code>société ↔ systèmes autonomes à grande échelle</code>
+          </div>
+        </div>
+
+        <p>
+          Les entités et les mécanismes changent, mais la relation analytique reste reconnaissable.
+          C'est la base de l'indépendance d'échelle du cadre.
+        </p>
+
+        <h3>4.5 Indépendance temporelle</h3>
+
+        <p>
+          La deuxième propriété structurelle majeure du cadre est l'indépendance temporelle.
+        </p>
+
+        <p>
+          Son objet analytique n'est pas une plateforme, un algorithme ou un paradigme technologique
+          particulier. Il s'agit de la relation entre complexité et interprétation.
+        </p>
+
+        <p>
+          Cette distinction permet au cadre de survivre à la substitution technologique. Les
+          mécanismes spécifiques par lesquels la complexité est produite peuvent changer, mais
+          la relation entre complexité structurelle et capacité interprétative reste disponible
+          pour l'examen.
+        </p>
+
+        <p>
+          L'indépendance temporelle concerne par conséquent la continuité analytique plutôt que
+          la similitude historique. Différentes périodes technologiques peuvent produire différentes
+          formes de complexité, mais le cadre ne dépend pas d'une implémentation particulière.
+        </p>
+
+        <p>
+          Cela rend le ratio potentiellement adapté à l'analyse à long terme tout en maintenant
+          des affirmations délibérément bornées. Il ne prédit pas comment la technologie évoluera.
+          Il fournit une structure relationnelle à travers laquelle les conditions technologiques
+          changeantes peuvent être examinées.
+        </p>
+      </section>
+
+      <section class="chapter" id="conclusion">
+        <div class="chapter-number">05 · Conclusion</div>
+        <h2>Conclusion et perspectives de recherche futures</h2>
+
+        <p>
+          Le Ratio interprétatif civilisationnel établit une perspective structurelle sur un
+          problème qui ne peut être adéquatement réduit à la seule capacité technologique.
+          Les systèmes autonomes peuvent devenir plus complexes grâce à des couches supplémentaires,
+          des dimensions décisionnelles, des relations de réseau et des comportements émergents,
+          tandis que la capacité interprétative qui les entoure évolue à un autre rythme.
+        </p>
+
+        <p>
+          La conséquence théorique n'est pas un jugement sur le progrès technologique. Il s'agit
+          d'un changement dans la structure de la participation.
+        </p>
+
+        <p>
+          Lorsque la capacité interprétative reste proportionnelle à la complexité, les acteurs
+          humains peuvent conserver une relation suffisamment directe avec les systèmes qu'ils
+          utilisent et supervisent. Lorsque la relation devient durablement déséquilibrée, la
+          participation peut devenir de plus en plus médiatisée par des processus décisionnels
+          délégués, des experts, des interfaces, des outils d'abstraction et d'autres structures
+          intermédiaires. La transparence peut devenir plus indirecte et la responsabilité peut
+          être distribuée le long de chaînes d'interaction plus longues.
+        </p>
+
+        <p>
+          Le cadre s'arrête délibérément avant de considérer ces conséquences comme la preuve
+          d'un effondrement inévitable. Le document source indique qu'une perturbation persistante
+          de la proportionnalité n'implique pas nécessairement un effondrement ; elle remodèle
+          les schémas de prise de décision, de responsabilité et de transparence. Cette retenue
+          est centrale au caractère analytique du cadre.
+        </p>
+
+        <p>
+          Le Ratio interprétatif civilisationnel est également délibérément simple. Son abstraction
+          permet une application à différentes époques et différents systèmes tout en maintenant
+          une connexion suffisamment concrète avec des phénomènes structurels observables. L'utilité
+          du modèle dépend donc moins de la complexité numérique que de la précision conceptuelle.
+        </p>
+
+        <div class="research-status">
+          <strong>Limites actuelles</strong>
+          <p>
+            La Version 1 ne fournit ni opérationnalisation mathématique formelle, ni ensemble de
+            données empiriques, ni procédure de mesure validée, ni capacité prédictive démontrée.
+            Le document sous-jacent se décrit explicitement comme un préprint théorique fondamental
+            et indique que les versions ultérieures pourront développer une modélisation formelle,
+            un affinage conceptuel et une contextualisation interdisciplinaire.
+          </p>
+        </div>
+
+        <p>
+          Cette limitation doit être préservée plutôt que masquée. Un ratio conceptuel ne peut
+          être traité comme un indice empirique simplement parce que sa terminologie présente
+          un aspect quantitatif. À ce stade, la valeur du ratio réside dans l'établissement
+          d'une relation disciplinée entre deux domaines habituellement examinés séparément.
+        </p>
+
+        <p>
+          Le programme de recherche futur découle de cette base.
+        </p>
+
+        <p>
+          Premièrement, les concepts de complexité du système et de capacité interprétative
+          nécessitent une spécification supplémentaire s'ils doivent soutenir une analyse
+          comparative formelle. Le cadre actuel identifie leurs principales dimensions mais
+          ne leur attribue pas de métriques opérationnelles.
+        </p>
+
+        <p>
+          Deuxièmement, la relation entre capacité interprétative individuelle et distribuée
+          nécessite un examen plus approfondi. Une institution peut compenser les limites
+          individuelles grâce à une expertise distribuée, à la documentation, aux interfaces
+          ou aux structures procédurales ; inversement, la distribution des connaissances peut
+          elle-même créer de nouvelles formes d'opacité.
+        </p>
+
+        <p>
+          Troisièmement, les conséquences structurelles identifiées par le modèle — prise de
+          décision déléguée, couches intermédiaires, diminution de la transparence et diffusion
+          de la responsabilité — pourraient à terme être examinées au moyen de recherches
+          empiriques. Une telle recherche constituerait une étape ultérieure du programme
+          plutôt qu'une preuve déjà contenue dans le cadre actuel.
+        </p>
+
+        <p>
+          Le Ratio interprétatif civilisationnel doit donc être compris au mieux comme un
+          <strong>programme de recherche analytique ouvert</strong>. Sa contribution actuelle
+          n'est ni un système de mesure achevé ni une théorie prédictive. Il s'agit d'un instrument
+          conceptuel destiné à rendre visible une relation structurelle particulière.
+        </p>
+
+        <div class="statement">
+          <p>
+            La question sous-jacente peut être formulée avec précision : à mesure que les systèmes
+            autonomes deviennent structurellement plus complexes, la capacité interprétative
+            humaine qui les entoure se développe-t-elle proportionnellement à cette complexité ?
+          </p>
+        </div>
+
+        <p>
+          Là où la réponse est incertaine, le ratio identifie le point à partir duquel une
+          investigation supplémentaire commence.
+        </p>
+      </section>
+
+      <section class="chapter references" id="references">
+        <div class="chapter-number">Références & statut</div>
+        <h2>Références et statut de la recherche</h2>
+
+        <h3>Référence</h3>
+
+        <div class="reference-card">
+          <p>
+            Van-Orton, Nicholas. (2026).
+            <em>Civilizational Interpretive Ratio: A Structural Framework on the Relationship
+            Between the Complexity of Autonomous Systems and Human Interpretive Capacity</em>.
+            Version 1. Authorial Research Framework NVO987. 27 février 2026.
+          </p>
+        </div>
+
+        <h3>Statut de la recherche</h3>
+
+        <p>
+          Cet article repose exclusivement sur le cadre théorique Version 1 de l'auteur.
+          Le document source identifie le travail comme un préprint théorique versionné dont
+          la formulation actuelle est déclarative et fondamentale plutôt qu'empiriquement validée.
+          Il indique explicitement qu'aucune modélisation mathématique formelle ni validation
+          empirique n'est incluse dans la version actuelle.
+        </p>
+
+        <p>
+          L'étude est de nature conceptuelle et théorique. Aucune nouvelle donnée empirique n'a
+          été générée et aucune collection de données existante n'a été analysée.
+        </p>
+
+        <p>
+          L'auteur déclare n'avoir aucun conflit d'intérêts financier ou personnel lié à la
+          préparation de l'étude et ne signale aucun financement externe. La source indique
+          en outre que l'auteur a développé seul le concept, le cadre théorique et le contenu écrit.
+        </p>
+
+        <p>
+          Le préprint sous-jacent n'a pas fait l'objet d'une évaluation formelle par les pairs.
+          Son objectif déclaré est d'établir la structure conceptuelle comme une unité autonome
+          et citable, tout en laissant le cadre ouvert à une réflexion critique ultérieure,
+          à une formalisation, à une investigation empirique et à un développement interdisciplinaire.
+        </p>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="eyebrow">NVO987 · Research Framework</div>
+
+          <h2 class="footer-title">
+            Une architecture pour<br>
+            l'interprétation.
+          </h2>
+
+          <p class="footer-description">
+            Ratio interprétatif civilisationnel — Version 1.
+            Un cadre théorique déclaratif et fondamental consacré à la relation entre
+            complexité structurelle et capacité interprétative humaine.
+          </p>
+        </div>
+
+        <nav class="footer-links" aria-label="Ressources et contacts">
+          <a class="footer-link" href="mailto:contact@nvo987.fr">
+            <span>contact@nvo987.fr</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="footer-link"
+             href="https://identity.nvo987.us/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Vérifier l'identité DID did:web:identity.nvo987.us">
+            <code>did:web:identity.nvo987.us</code>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="footer-link"
+             href="https://www.nvo987.fr/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <span>www.nvo987.fr</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="footer-link"
+             href="https://recherche.nvo987.fr/"
+             target="_blank"
+             rel="noopener noreferrer">
+            <span>recherche.nvo987.fr</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="footer-link"
+             href="https://nvo987.fr/mentions-legales.html"
+             target="_blank"
+             rel="noopener noreferrer">
+            <span>Mentions légales</span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Nicholas Van-Orton · NVO987</span>
+
+        <span>
+          <a href="#top">Retour en haut ↑</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</body>
+  </html>
