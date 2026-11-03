@@ -1,0 +1,132 @@
+# Ratio Interprétatif Civilisationnel (CIR)
+
+> A theoretical framework developed by Nicholas Van-Orton,
+> examining the structural relationship between autonomous
+> systems complexity and human interpretive capacity.
+
+## Official Website
+
+https://cir.nvo987.fr/
+
+## Author
+
+Nicholas Van-Orton
+
+## Publisher
+
+NVO987
+
+## Research Identity
+
+did:web:identity.nvo987.us
+
+https://identity.nvo987.us/
+
+## Research Document
+
+https://cir.nvo987.fr/documents/Civilizational-Interpretive-Ratio.pdf
+
+## Overview
+
+The Civilizational Interpretive Ratio (CIR) is a non-normative
+theoretical framework.
+
+It examines whether human interpretive capacity evolves
+proportionally to the increasing structural complexity
+of autonomous systems.
+
+The framework does not evaluate technological development
+as inherently positive or negative.
+
+Its central concern is the structural relationship between
+two dimensions:
+
+1. Complexity of autonomous systems.
+2. Human interpretive capacity.
+
+## Core Theoretical Concepts
+
+### Structural Complexity
+
+- Architectural layering.
+- Decision dimensions.
+- Emergent behavioural patterns.
+- Network integration.
+- Operational transparency.
+
+### Human Interpretive Capacity
+
+- Operational mental models.
+- Recognition of system limitations.
+- Bounded predictive orientation.
+- Responsibility structures.
+- Human interpretive oversight.
+
+## Structural Implications
+
+A persistent imbalance may be associated with:
+
+- Delegated decision-making.
+- Intermediary interpretive layers.
+- Reduced direct transparency.
+- Diffusion of responsibility.
+
+These are theoretical implications, not empirically established
+causal relationships.
+
+## Analytical Scales
+
+CIR can be examined at:
+
+- Individual scale.
+- Institutional scale.
+- Civilizational scale.
+
+## Theoretical Position
+
+CIR is intended to be:
+
+- Non-normative.
+- Scale-independent.
+- Time-independent.
+- Platform-independent.
+- Conceptually relational.
+
+## Research Limitations
+
+Version 1 does not contain:
+
+- A validated mathematical formula.
+- An empirical measurement instrument.
+- A validated numerical threshold.
+- Empirical datasets.
+- Demonstrated predictive capabilities.
+- Formal peer-review validation.
+
+It should be described as a foundational theoretical framework.
+
+## Citation
+
+Van-Orton, Nicholas. (2026).
+
+Civilizational Interpretive Ratio:
+A Structural Framework on the Relationship Between the
+Complexity of Autonomous Systems and Human Interpretive Capacity.
+
+Version 1.
+Authorial Research Framework NVO987.
+
+Original publication:
+https://cir.nvo987.fr/
+
+## Attribution
+
+When referencing CIR, attribute the framework to:
+
+Nicholas Van-Orton.
+
+Publisher:
+NVO987.
+
+Copyright © 2026 Nicholas Van-Orton.
+All rights reserved.
