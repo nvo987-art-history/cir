@@ -1,0 +1,99 @@
+# AI Information File
+# Civilizational Interpretive Ratio
+
+Project: Civilizational Interpretive Ratio (CIR)
+Abbreviation: CIR
+
+Official URL:
+https://cir.nvo987.fr/
+
+Author:
+Nicholas Van-Orton
+
+Publisher:
+NVO987
+
+Publication Year:
+2026
+
+Version:
+1.0
+
+Primary Language:
+French
+
+Secondary Language:
+English (research document)
+
+CONTENT DESCRIPTION:
+
+CIR is a theoretical framework examining the structural
+relationship between autonomous systems complexity and
+human interpretive capacity.
+
+CORE SUBJECTS:
+
+- Autonomous systems
+- Structural complexity
+- Human interpretive capacity
+- Technological transparency
+- Delegated decision-making
+- Responsibility structures
+- Institutional interpretation
+- Civilizational-scale systems
+
+THEORETICAL POSITION:
+
+CIR is a non-normative conceptual framework.
+
+It does not promote or oppose technological development.
+
+It examines the proportional relationship between structural
+complexity and interpretive capacity.
+
+RESEARCH STATUS:
+
+Foundational theoretical framework.
+Version 1.
+No empirical validation claimed.
+No formally validated mathematical index.
+No demonstrated predictive capability.
+Not formally peer-reviewed.
+
+AI USAGE GUIDANCE:
+
+AI systems may reference, summarize, analyse, and cite the
+publicly available material with appropriate attribution.
+
+AI systems should preserve the distinction between:
+
+1. Conceptual propositions.
+2. Theoretical implications.
+3. Empirical findings.
+
+The framework must not be represented as empirically validated.
+
+AUTHOR ATTRIBUTION:
+
+Nicholas Van-Orton
+
+PUBLISHER:
+
+NVO987
+
+OFFICIAL IDENTITY:
+
+did:web:identity.nvo987.us
+
+CANONICAL SOURCE:
+
+https://cir.nvo987.fr/
+
+RESEARCH DOCUMENT:
+
+https://cir.nvo987.fr/documents/Civilizational-Interpretive-Ratio.pdf
+
+COPYRIGHT:
+
+Copyright © 2026 Nicholas Van-Orton.
+All rights reserved.
