@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+    <title>Ratio Interprétatif Civilisationnel (CIR)</title>
+
+    <subtitle>
+        A theoretical framework examining the relationship between
+        autonomous systems complexity and human interpretive capacity.
+    </subtitle>
+
+    <id>https://cir.nvo987.fr/</id>
+
+    <link href="https://cir.nvo987.fr/" rel="alternate" type="text/html"/>
+
+    <link href="https://cir.nvo987.fr/atom.xml" rel="self" type="application/atom+xml"/>
+
+    <updated>2026-11-03T00:00:00Z</updated>
+
+    <author>
+        <name>Nicholas Van-Orton</name>
+        <uri>https://nvo987.fr/</uri>
+    </author>
+
+    <rights>Copyright © 2026 Nicholas Van-Orton. All rights reserved.</rights>
+
+    <category term="Research"/>
+    <category term="Autonomous Systems"/>
+    <category term="Structural Complexity"/>
+    <category term="Human Interpretive Capacity"/>
+
+    <entry>
+
+        <title>
+            Civilizational Interpretive Ratio: A Structural Framework
+        </title>
+
+        <id>
+            https://cir.nvo987.fr/documents/Civilizational-Interpretive-Ratio.pdf
+        </id>
+
+        <link
+            href="https://cir.nvo987.fr/documents/Civilizational-Interpretive-Ratio.pdf"
+            rel="alternate"
+            type="application/pdf"
+        />
+
+        <updated>2026-11-03T00:00:00Z</updated>
+
+        <published>2026-02-27T00:00:00Z</published>
+
+        <author>
+            <name>Nicholas Van-Orton</name>
+        </author>
+
+        <summary type="text">
+            A foundational theoretical framework examining the
+            structural relationship between the complexity of
+            autonomous systems and human interpretive capacity.
+            Version 1 is conceptual and does not claim empirical
+            validation or formal mathematical operationalisation.
+        </summary>
+
+        <category term="Civilizational Interpretive Ratio"/>
+        <category term="Theoretical Research"/>
+
+    </entry>
+
+</feed>
