@@ -1,0 +1,74 @@
+/* TEAM */
+
+Author: Nicholas Van-Orton
+Role: Creator and Theoretical Framework Developer
+Publisher: NVO987
+
+/* PROJECT */
+
+Project: Civilizational Interpretive Ratio
+Abbreviation: CIR
+Version: 1.0
+Year: 2026
+
+Website: https://cir.nvo987.fr/
+Publisher: https://nvo987.fr/
+Research: https://recherche.nvo987.fr/
+
+/* RESEARCH */
+
+Title: Ratio Interprétatif Civilisationnel
+
+Subject:
+Structural relationship between autonomous systems complexity
+and human interpretive capacity.
+
+Research Type:
+Foundational theoretical research.
+
+Status:
+Conceptual framework / Theoretical preprint.
+
+Empirical Validation:
+Not claimed.
+
+Peer Review:
+Not formally peer-reviewed.
+
+/* IDENTITY */
+
+Author Identity:
+did:web:identity.nvo987.us
+
+Identity Website:
+https://identity.nvo987.us/
+
+/* TECHNOLOGY */
+
+HTML5
+CSS3
+JavaScript
+Responsive Web Design
+Semantic Metadata
+Open Graph
+Dublin Core
+FOAF
+DID
+
+/* TYPOGRAPHY */
+
+Inter
+Playfair Display
+
+/* COPYRIGHT */
+
+Copyright © 2026 Nicholas Van-Orton.
+All rights reserved.
+
+/* CONTACT */
+
+Email: contact@nvo987.fr
+
+/* LAST UPDATED */
+
+2026-11-03
